@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Numerics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +11,17 @@ namespace ConsoleApplication1
 {
 	class Program
 	{
+		static long[] Factorials = {
+			0,1,2,6,24,120,720,5040,40320,362880,3628800,39916800,479001600,6227020800,87178291200,1307674368000,20922789888000,
+				355687428096000,6402373705728000,121645100408832000,2432902008176640000 };
+
 		static void Main(string[] args)
 		{
-			long[] result = SumDigPow(1, 100);
-			foreach (long  i in result)
-			{
-				Console.WriteLine(i);
-			}
+			Console.WriteLine(dec2FactString(371993326789901217));
+			Console.WriteLine(factString2Dec("311E55B5544150121110"));
+
 			Console.Read();
 		}
-
 
 		public static string DuplicateEncode(string word)
 		{
@@ -159,7 +161,8 @@ namespace ConsoleApplication1
 			//return result.ToArray();
 
 			var cache = new Dictionary<int, int>();
-			return arr.Where(n => {
+			return arr.Where(n =>
+			{
 				int count = cache.ContainsKey(n) ? cache[n] : 0;
 				cache[n] = count + 1;
 				return cache[n] <= x;
@@ -170,7 +173,7 @@ namespace ConsoleApplication1
 		{
 			// your code
 			return Enumerable.Range((int)a, (int)(b - a + 1)).Where(
-				n =>n.ToString().Select((c, i) => Math.Pow(char.GetNumericValue(c), i+1)).Sum() == n
+				n => n.ToString().Select((c, i) => Math.Pow(char.GetNumericValue(c), i + 1)).Sum() == n
 			).Select(n => (long)n).ToArray();
 		}
 		public static string PigIt(string str)
@@ -195,8 +198,79 @@ namespace ConsoleApplication1
 			//solution 1:
 			return string.Join(" ", str.Split().Select(x => x.Substring(1) + x[0] + "ay"));
 			//solution 2:
-			return Regex.Replace(str, "(?<=^| )(\\w)(\\w+)", m => m.Groups[2].Value + m.Groups[1].Value + "ay");
+			//return Regex.Replace(str, "(?<=^| )(\\w)(\\w+)", m => m.Groups[2].Value + m.Groups[1].Value + "ay");
 
+		}
+		public static string SpinWords(string sentence)
+		{
+			return String.Join(" ", sentence.Split(' ').Select(s =>
+			{
+				if (s.Length < 5) return s;
+				else
+					return new String(s.Reverse().ToArray());
+			}));
+		}
+		public static int bouncingBall(double h, double bounce, double window)
+		{
+			// your code
+			int result = -1;
+			if (bounce >= 1 || bounce <= 0)
+				return result;
+
+			while (h > window)
+			{
+				result += 2;
+				h *= bounce;
+			}
+			return result;
+		}
+		public static int CountBits(int n)
+		{
+			//int BitCount = 0;
+			//while (n != 0)
+			//{
+			//	n -= (int)Math.Pow(2, (int)Math.Log(n, 2));
+			//	BitCount += 1;
+			//}
+			//return BitCount;
+
+			int BitCount = 0;
+			while (n != 0)
+			{
+				BitCount += n & 1;
+				n >>= 1;
+			}
+			return BitCount;
+
+			// ↓ ↓ ↓ 神奇方法 ↓ ↓ ↓
+			//return Convert.ToString(n, 2).Count(x => x == '1');
+		}
+		public static string dec2FactString(long nb)
+		{
+			return String.Join(string.Empty, Factorials.Reverse().Select(x =>
+			 {
+				 if (x == 0) return "0";
+				 long temp = nb;
+				 nb %= x;
+				 return num2Letter((int)(temp / x)).ToString();
+			 })).TrimStart('0');
+		}
+		public static long factString2Dec(string str)
+		{
+			return str.Reverse().Select((c, i) => let2Number(c) * Factorials[i]).Sum();
+		}
+		private static char num2Letter(int i)
+		{
+			if (i > 35 || i < 0) throw new ArgumentException();
+			if (i < 10) return (char)(i+'0');
+			else
+				return (char)('A' + (i - 10));
+		}
+		private static int let2Number(char c)
+		{
+			if (c >= '0' && c <= '9') return c - '0';
+			else if (c >= 'A' && c <= 'Z') return c - 'A' + 10;
+			else throw new ArgumentException();
 		}
 	}
 }
