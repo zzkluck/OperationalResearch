@@ -22,19 +22,19 @@ private:
 	}
 };
 
-int main()
-{
-	try
-	{
-		cout << EuclideanAlgorithm::Start(1242, 2511) << endl;
-		cout << EuclideanAlgorithm::Start(23, 101) << endl;
-		cout << EuclideanAlgorithm::Start(14, 49) << endl;
-		cout << EuclideanAlgorithm::Start(49, 14) << endl;
-		cout << EuclideanAlgorithm::Start(-1242, 2511) << endl;
-	}
-	catch (const std::exception& e)
-	{
-		cout << e.what() << endl;
-	}
-	getchar();
-}
+//int main()
+//{
+//	try
+//	{
+//		cout << EuclideanAlgorithm::Start(1242, 2511) << endl;
+//		cout << EuclideanAlgorithm::Start(23, 101) << endl;
+//		cout << EuclideanAlgorithm::Start(14, 49) << endl;
+//		cout << EuclideanAlgorithm::Start(49, 14) << endl;
+//		cout << EuclideanAlgorithm::Start(-1242, 2511) << endl;
+//	}
+//	catch (const std::exception& e)
+//	{
+//		cout << e.what() << endl;
+//	}
+//	getchar();
+//}
