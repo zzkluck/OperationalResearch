@@ -18,8 +18,20 @@ namespace ConsoleApplication1
 
         static void Main(string[] args)
         {
-           Lazy<>
-            Console.Read();
+			try
+			{
+				Console.WriteLine(SecondaryRadarCode.ExplainCodeA("111110100110"));
+				Console.WriteLine("111110100110");
+				Console.WriteLine(SecondaryRadarCode.GetCodeA("3572"));
+
+				Console.WriteLine("0001001010");
+				Console.WriteLine(SecondaryRadarCode.GrayCode2Bin("0001001010"));
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
+			Console.Read();
         }
 
         public static string DuplicateEncode(string word)
