@@ -118,7 +118,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\admin\Desktop\约瑟夫环.cpp" />
     <ClCompile Include="Maze.cpp" />
     <ClCompile Include="UnitTests.cpp" />
     <ClCompile Include="VirtualFunction.cpp" />

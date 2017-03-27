@@ -21,9 +21,6 @@
     <ClCompile Include="VirtualFunction.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\admin\Desktop\约瑟夫环.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Maze.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
